@@ -10,6 +10,7 @@
 		"pause_break":19,
 		"caps_lock":20,
 		"escape":27,
+		"space": 32,
 		"page_up":33,
 		"page_down":34,
 		"end":35,
@@ -105,7 +106,8 @@
 		onKeyDown : 1,
 		onKeyUp: 2,
 		withShiftPressed: 4,
-		withControlPressed: 8
+		withControlPressed: 8,
+		withAltPressed: 16
 	};
 	
 
@@ -121,17 +123,14 @@
 			if (keyPressedCode != keyCodeToHandle)
 				return false;			
 
-			if (hasOption($.easyKey.options.withShiftPressed) && !event.shiftKey) 
+			if ((hasOption($.easyKey.options.withShiftPressed) && !event.shiftKey) || (!hasOption($.easyKey.options.withShiftPressed) && event.shiftKey))
 				return false;
 
-			if (hasOption($.easyKey.options.withControlPressed) && !event.ctrlKey)
+			if ((hasOption($.easyKey.options.withControlPressed) && !event.ctrlKey) || (!hasOption($.easyKey.options.withControlPressed) && event.ctrlKey))
 				return false;
 
-			if (!hasOption($.easyKey.options.withShiftPressed) && event.shiftKey)
-				return false;
-
-			if (!hasOption($.easyKey.options.withControlPressed) && event.ctrlKey)
-				return false;
+			if ((hasOption($.easyKey.options.withAltPressed) && !event.altKey) || (!hasOption($.easyKey.options.withAltPressed) && event.altKey))
+				return false;			
 
 			return true;
 		};
@@ -158,104 +157,105 @@
 		return this;
 	};
 
-	$.fn.onBackspaceKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.backspace, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onTabKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.tab, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onEnterKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.enter, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onShiftKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.shift, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onCtrlKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.ctrl, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onAltKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.alt, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onPauseBreakKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.pause_break, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onCapsLockKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.caps_lock, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onEscapeKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.escape, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onPageUpKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.page_up, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onPageDownKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.page_down, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onEndKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.end, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onHomeKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.home, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onLeftArrowKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.left_arrow, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onUpArrowKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.up_arrow, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onRightArrowKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.right_arrow, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onDownArrowKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.down_arrow, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onInsertKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.insert, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onDeleteKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.delete, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on0KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["0"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on1KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["1"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on2KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["2"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on3KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["3"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on4KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["4"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on5KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["5"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on6KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["6"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on7KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["7"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on8KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["8"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.on9KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["9"], onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onAKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.a, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onBKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.b, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onCKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.c, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onDKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.d, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onEKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.e, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onFKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onGKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.g, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onHKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.h, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onIKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.i, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onJKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.j, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onKKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.k, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onLKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.l, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onMKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.m, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.n, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onOKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.o, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onPKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.p, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onQKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.q, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onRKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.r, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onSKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.s, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onTKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.t, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onUKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.u, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onVKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.v, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onWKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.w, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onXKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.x, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onYKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.y, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onZKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.z, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onLeftWindowKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.left_window_key, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onRightWindowKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.right_window_key, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onSelectKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.select_key, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad0KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_0, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad1KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_1, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad2KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_2, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad3KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_3, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad4KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_4, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad5KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_5, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad6KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_6, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad7KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_7, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad8KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_8, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumpad9KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_9, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onMultiplyKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.multiply, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onAddKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.add, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onSubtractKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.subtract, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onDecimalPointKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.decimal_point, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onDivideKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.divide, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF1KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f1, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF2KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f2, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF3KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f3, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF4KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f4, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF5KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f5, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF6KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f6, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF7KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f7, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF8KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f8, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF9KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f9, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF10KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f10, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF11KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f11, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onF12KeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f12, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onNumLockKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.num_lock, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onScrollLockKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.scroll_lock, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onSemiColonKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.semi_colon, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onEqualSignKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.equal_sign, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onCommaKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.comma, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onDashKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.dash, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onPeriodKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.period, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onForwardSlashKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.forward_slash, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onGraveAccentKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.grave_accent, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onOpenBracketKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.open_bracket, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onBackSlashKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.back_slash, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onCloseBraketKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.close_braket, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
-	$.fn.onSingleQuoteKeyDown = function(onKeyDownHanlder, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.single_quote, onKeyDownHanlder, $.easyKey.options.onKeyDown | options); }
+	$.fn.onBackspaceKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.backspace, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onTabKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.tab, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onEnterKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.enter, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onShiftKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.shift, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onCtrlKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.ctrl, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onAltKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.alt, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onPauseBreakKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.pause_break, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onCapsLockKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.caps_lock, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onEscapeKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.escape, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onSpaceKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.space, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onPageUpKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.page_up, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onPageDownKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.page_down, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onEndKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.end, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onHomeKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.home, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onLeftArrowKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.left_arrow, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onUpArrowKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.up_arrow, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onRightArrowKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.right_arrow, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onDownArrowKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.down_arrow, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onInsertKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.insert, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onDeleteKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.delete, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on0KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["0"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on1KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["1"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on2KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["2"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on3KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["3"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on4KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["4"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on5KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["5"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on6KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["6"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on7KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["7"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on8KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["8"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.on9KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes["9"], onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onAKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.a, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onBKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.b, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onCKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.c, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onDKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.d, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onEKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.e, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onFKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onGKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.g, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onHKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.h, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onIKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.i, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onJKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.j, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onKKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.k, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onLKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.l, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onMKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.m, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.n, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onOKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.o, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onPKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.p, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onQKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.q, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onRKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.r, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onSKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.s, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onTKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.t, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onUKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.u, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onVKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.v, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onWKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.w, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onXKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.x, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onYKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.y, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onZKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.z, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onLeftWindowKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.left_window_key, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onRightWindowKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.right_window_key, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onSelectKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.select_key, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad0KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_0, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad1KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_1, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad2KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_2, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad3KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_3, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad4KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_4, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad5KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_5, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad6KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_6, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad7KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_7, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad8KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_8, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumpad9KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.numpad_9, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onMultiplyKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.multiply, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onAddKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.add, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onSubtractKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.subtract, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onDecimalPointKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.decimal_point, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onDivideKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.divide, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF1KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f1, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF2KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f2, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF3KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f3, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF4KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f4, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF5KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f5, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF6KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f6, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF7KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f7, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF8KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f8, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF9KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f9, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF10KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f10, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF11KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f11, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onF12KeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.f12, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onNumLockKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.num_lock, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onScrollLockKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.scroll_lock, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onSemiColonKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.semi_colon, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onEqualSignKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.equal_sign, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onCommaKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.comma, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onDashKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.dash, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onPeriodKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.period, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onForwardSlashKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.forward_slash, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onGraveAccentKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.grave_accent, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onOpenBracketKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.open_bracket, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onBackSlashKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.back_slash, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onCloseBraketKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.close_braket, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
+	$.fn.onSingleQuoteKeyDown = function(onKeyDownHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.single_quote, onKeyDownHandler, $.easyKey.options.onKeyDown | options); }
 
 	$.fn.onBackspaceKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.backspace, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
 	$.fn.onTabKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.tab, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
@@ -266,6 +266,7 @@
 	$.fn.onPauseBreakKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.pause_break, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
 	$.fn.onCapsLockKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.caps_lock, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
 	$.fn.onEscapeKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.escape, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
+	$.fn.onSpaceKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.space, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
 	$.fn.onPageUpKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.page_up, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
 	$.fn.onPageDownKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.page_down, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
 	$.fn.onEndKeyUp = function(onKeyUpHandler, options) { return $.fn.onkey.call(this, $.easyKey.keyCodes.end, onKeyUpHandler, $.easyKey.options.onKeyUp | options); }
