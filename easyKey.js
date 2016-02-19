@@ -143,14 +143,14 @@
 			if (hasOption($.easyKey.options.onKeyDown)){
 				$(this).keydown(function(e){					
 					if (shouldHandleKey(e, whichKey)){
-						onKey.call(this, e);
+						return onKey.call(this, e);
 					}
 				});
 			}
 			if (hasOption($.easyKey.options.onKeyUp)){
 				$(this).keyup(function(e){
 					if (shouldHandleKey(e, whichKey)){
-						onKey.call(this, e);
+						return onKey.call(this, e);
 					}
 				});				
 			}
