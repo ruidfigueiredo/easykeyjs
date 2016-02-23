@@ -1,4 +1,4 @@
-# EasyKeyJs
+# easykeyjs
 
 
 Stop having to write code like this
