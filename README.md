@@ -19,6 +19,6 @@ And write this instead:
  	  .onLeftArrowKeyDown(previousPage)
 	  .onRightArrowKeyDown(nextPage);
 
-Read more about easykeyjs [here](http://www.blinkingcaret.com/2016/02/24/easykeyjs)
+Read [more about easykeyjs](http://www.blinkingcaret.com/2016/02/24/easykeyjs).
 
-Go download the latest version [http://easykeyjs.com](http://easykeyjs.com)
+Go download the latest version [http://easykeyjs.com](http://easykeyjs.com).
