@@ -99,10 +99,9 @@
 		"grave_accent": 192,
 		"open_bracket": 219,
 		"back_slash": 220,
-		"close_braket": 221,
+		"close_bracket": 221,
 		"single_quote": 222
 	};
-
 
 	$.easyKey.options = {
 		onKeyDown : 1,
@@ -256,7 +255,7 @@
 	$.fn.onGraveAccentKeyDown = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.grave_accent, handler, $.easyKey.options.onKeyDown || options); };
 	$.fn.onOpenBracketKeyDown = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.open_bracket, handler, $.easyKey.options.onKeyDown || options); };
 	$.fn.onBackSlashKeyDown = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.back_slash, handler, $.easyKey.options.onKeyDown || options); };
-	$.fn.onCloseBraketKeyDown = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.close_braket, handler, $.easyKey.options.onKeyDown || options); };
+	$.fn.onCloseBracketKeyDown = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.close_bracket, handler, $.easyKey.options.onKeyDown || options); };
 	$.fn.onSingleQuoteKeyDown = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.single_quote, handler, $.easyKey.options.onKeyDown || options); };
 
 	$.fn.onBackspaceKeyUp = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.backspace, handler, $.easyKey.options.onKeyUp || options); };
@@ -356,6 +355,6 @@
 	$.fn.onGraveAccentKeyUp = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.grave_accent, handler, $.easyKey.options.onKeyUp || options); };
 	$.fn.onOpenBracketKeyUp = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.open_bracket, handler, $.easyKey.options.onKeyUp || options); };
 	$.fn.onBackSlashKeyUp = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.back_slash, handler, $.easyKey.options.onKeyUp || options); };
-	$.fn.onCloseBraketKeyUp = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.close_braket, handler, $.easyKey.options.onKeyUp || options); };
+	$.fn.onCloseBracketKeyUp = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.close_bracket, handler, $.easyKey.options.onKeyUp || options); };
 	$.fn.onSingleQuoteKeyUp = function(handler, options) { return $.fn.onKey.call(this, $.easyKey.keyCodes.single_quote, handler, $.easyKey.options.onKeyUp || options); };
 }(jQuery));
