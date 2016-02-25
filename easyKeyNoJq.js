@@ -97,7 +97,7 @@ easyKey.keyCodes = easyKey.keyCodes || {
 	"grave_accent":192,
 	"open_bracket":219,
 	"back_slash":220,
-	"close_braket":221,
+	"close_bracket":221,
 	"single_quote":222 };
 
 
@@ -255,7 +255,7 @@ easyKey.onForwardSlashKeyDown = function(collection, onKeyDownHandler, options) 
 easyKey.onGraveAccentKeyDown = function(collection, onKeyDownHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.grave_accent, collection, onKeyDownHandler, easyKey.options.onKeyDown | options); }
 easyKey.onOpenBracketKeyDown = function(collection, onKeyDownHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.open_bracket, collection, onKeyDownHandler, easyKey.options.onKeyDown | options); }
 easyKey.onBackSlashKeyDown = function(collection, onKeyDownHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.back_slash, collection, onKeyDownHandler, easyKey.options.onKeyDown | options); }
-easyKey.onCloseBraketKeyDown = function(collection, onKeyDownHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.close_braket, collection, onKeyDownHandler, easyKey.options.onKeyDown | options); }
+easyKey.onCloseBracketKeyDown = function(collection, onKeyDownHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.close_bracket, collection, onKeyDownHandler, easyKey.options.onKeyDown | options); }
 easyKey.onSingleQuoteKeyDown = function(collection, onKeyDownHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.single_quote, collection, onKeyDownHandler, easyKey.options.onKeyDown | options); }
 
 easyKey.onBackspaceKeyUp = function(collection, onKeyUpHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.backspace, collection, onKeyUpHandler, easyKey.options.onKeyUp | options); }
@@ -355,5 +355,5 @@ easyKey.onForwardSlashKeyUp = function(collection, onKeyUpHandler, options) { re
 easyKey.onGraveAccentKeyUp = function(collection, onKeyUpHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.grave_accent, collection, onKeyUpHandler, easyKey.options.onKeyUp | options); }
 easyKey.onOpenBracketKeyUp = function(collection, onKeyUpHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.open_bracket, collection, onKeyUpHandler, easyKey.options.onKeyUp | options); }
 easyKey.onBackSlashKeyUp = function(collection, onKeyUpHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.back_slash, collection, onKeyUpHandler, easyKey.options.onKeyUp | options); }
-easyKey.onCloseBraketKeyUp = function(collection, onKeyUpHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.close_braket, collection, onKeyUpHandler, easyKey.options.onKeyUp | options); }
+easyKey.onCloseBracketKeyUp = function(collection, onKeyUpHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.close_bracket, collection, onKeyUpHandler, easyKey.options.onKeyUp | options); }
 easyKey.onSingleQuoteKeyUp = function(collection, onKeyUpHandler, options) { return easyKey.onKey.call(this, easyKey.keyCodes.single_quote, collection, onKeyUpHandler, easyKey.options.onKeyUp | options); }
